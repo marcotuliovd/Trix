@@ -1,4 +1,5 @@
 import { Response, Request } from 'express';
+import { ResponseTransactions } from '../interface/transactionsInterface';
 import * as transactionsService from '../service/transactionsService';
 
 export async function deposit(req: Request, res: Response) {
@@ -24,4 +25,11 @@ export async function withdrawal(req: Request, res: Response) {
   if (result === 'UNAVAILABLE_BALANCE') {
     return res.status(401).json({ message: 'o saldo não é suficiente' });
   }
+}
+
+export async function sendMoney(req: Request, res: Response) {
+  const { username, receiving, money } = req.body;
+  const response = await transactionsService
+    .sendMoney(username, receiving, money) as ResponseTransactions;
+  return res.status(response?.status).json(response.message);
 }
