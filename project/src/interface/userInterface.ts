@@ -1,5 +1,4 @@
 export interface UserReq {
-  id?: number;
   username: string,
   vocation: string,
   level: number,
@@ -8,8 +7,18 @@ export interface UserReq {
 
 export interface NewUser extends UserReq {
   password: string,
+  id: number,
 }
 
 export interface FoundUser extends UserReq {
   password: string,
+  id?: number;
+}
+
+export interface UserTransactions {
+  payload: {
+    username: string
+  },
+  iat: number,
+  exp: number,
 }

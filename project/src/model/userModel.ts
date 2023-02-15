@@ -22,3 +22,17 @@ export async function login(username: string) {
     return 'USER_INVALID';
   }
 }
+
+export async function getUser(username: string) {
+  try {
+    const SQL = 'Select * from Trix.users where username = (?)';
+    const [[user]] = await connection
+      .execute<RowDataPacket[] & NewUser[]>(SQL, [username]);
+    if (user.username === username) {
+      return 'EXIST';
+    }
+  } catch (erro) {
+    console.log(erro);
+    return 'USER_INVALID';
+  }
+}
