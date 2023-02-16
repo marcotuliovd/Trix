@@ -21,7 +21,9 @@ async function getUser(username: string) {
 
 export async function deposit(username: string, money: number) {
   try {
+
     const user = await getUser(username);
+
     if (user === 'FAILURE') {
       return 'FAILURE';
     }
@@ -29,6 +31,7 @@ export async function deposit(username: string, money: number) {
     const SQL_UPDATE = 'UPDATE Trix.users SET balance = (?) where username = (?)';
     await connection.execute<ResultSetHeader>(SQL_UPDATE, [newValue, username]);
     await registry(user.id, user.id, money);
+
     return 'SUCESS';
   } catch (erro) {
     console.log(erro);

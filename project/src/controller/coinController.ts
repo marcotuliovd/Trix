@@ -11,12 +11,20 @@ export async function quotationCode(req: Request, res: Response) {
   const { code } = req.params;
   console.log(code);
   const data = await fetchQuotationCode(code);
+
+  // await setRedis(`user-${code}`, JSON.stringify(data));
+
   return res.status(200).json(data);
 }
 
 export async function sellCoin(req: Request, res: Response) {
   const { money, username, code } = req.body;
+
+  // const quotationRedis = await getRedis(`code-${code}`) as string;
+  // let data = JSON.parse(quotationRedis);  
+  // if (!quotationRedis) {
   const [data] = await fetchQuotationCode(code);
+  // }
   const quotationNumber = Number(data.high);
   const value = quotationNumber * money;
   const result = await deposit(username, value);

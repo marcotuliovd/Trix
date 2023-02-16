@@ -21,6 +21,7 @@ export async function login(username: string) {
     const SQL = 'Select * from Trix.users where username = (?)';
     const [[user]] = await connection
       .execute<RowDataPacket[] & NewUser[]>(SQL, [username]);
+
     return user.password;
   } catch (erro) {
     console.log(erro);

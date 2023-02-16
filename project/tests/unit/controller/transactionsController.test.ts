@@ -5,7 +5,7 @@ import sinonChai from 'sinon-chai';
 
 import * as service from '../../../src/service/transactionsService';
 import * as controller from '../../../src/controller/transactionsController';
-import { userLogin, userPost } from '../mocks/userMock';
+import { userPost } from '../mocks/userMock';
 import { Request, Response } from 'express';
 
 chai.use(sinonChai);

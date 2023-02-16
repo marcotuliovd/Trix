@@ -28,6 +28,7 @@ export async function login(req: Request, res: Response) {
       keySecret,
       { algorithm: 'HS256', expiresIn: '500min' },
     );
+
     return res.status(200).json({ token });
   }
   return res.status(404).json({ message: 'username não encontrado' });
