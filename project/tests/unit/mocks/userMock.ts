@@ -6,16 +6,9 @@ balance: 10,
 password: 'opaaaaa',
 }
 
-// const responseUser = [
-//   ResultSetHeader: {
-//     fieldCount: 0,
-//     affectedRows: 1,
-//     insertId: 5,
-//     info: '',
-//     serverStatus: 2,
-//     warningStatus: 0
-//   },
-//   undefined
-// ]
+const userLogin = {
+username: 'string',
+password: 'opaaaaa',
+}
 
-export { userPost }
+export { userPost, userLogin }

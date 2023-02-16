@@ -46,7 +46,7 @@ describe('Teste de unidade do transactions service', function() {
       .stub(model, 'withdrawal')
       .resolves('FAILURE');
 
-    const result = await service.deposit('username', 10);
+    const result = await service.withdrawal('username', 10);
 
     expect(result).to.be.deep.equal('FAILURE');
   });
