@@ -1,4 +1,5 @@
 import express from 'express';
+import swaggerUi from 'swagger-ui-express';
 import userRouter from './routes/userRouter';
 import loginRouter from './routes/loginRouter';
 import transactionsRouter from './routes/transactionsRouter';

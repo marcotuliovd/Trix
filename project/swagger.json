@@ -1,1 +1,84 @@
-{}
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Api do Trix",
+    "description": "Essa api tem como função fazer o gerenciamento bancário do usuário, sendo possível realizar saques, depósitos, transferências e venda de moedas e cripto moedas",
+    "contact": "marcotuliovd"
+  },
+  "paths" : {
+    "/users": {
+      "post": {
+        "summary": "cadastro de cliente",
+        "description": "Essa rota realiza o cadastro de novos clientes, retornando um token de acesso",
+        "tags": ["Users"],
+        "security": [{ "bearerAuth": [] }],
+        "requestBody": {
+          "content": {
+            "application/json": {
+              "schema" : {
+                "$ref": "#/components/schemas/Products"
+              },
+              "examples": {
+                "product": {
+                  "value": {
+                    "username": "marcotuliovd",
+                    "vocation": "dev",
+                    "level": 1,
+                    "password": "123456",
+                    "balance": 5000
+                  }
+                }
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "OK",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "string",
+                  "items": {
+                    "token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJwYXlsb2FkIjp7InVzZXJuYW1lIjoieXJhYSJ9LCJpYXQiOjE2NzY0Nzk2NTksImV4cCI6MTY3NjUwOTY1OX0.5rjE0Kl9L7_uSsZ3AJTfeGtV6sJ4iayX3Fh--0qKjJo"
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Products": {
+        "type": "object",
+        "properties": {
+          "username": {
+            "type": "string"
+          },
+          "vocation": {
+            "type": "string"
+          },
+          "level": {
+            "type": "number"
+          },
+          "password": {
+            "type": "string"
+          },
+          "balance": {
+            "type": "number"
+          }
+        }
+      }
+    },
+    "securitySchemes": {
+      "bearerAuth": {
+        "type": "http",
+        "scheme": "bearer",
+        "bearerFormat": "JWT"
+      }
+    }
+  }
+}
