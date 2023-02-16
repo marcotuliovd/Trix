@@ -2,9 +2,14 @@
 module.exports = {
   preset: 'ts-jest',
   testEnvironment: 'node',
-  rootDir: './tests',
-  testSequencer: './assets/sequencer.js',
-  testRegex: './*\\.test\\.ts$',
-  testTimeout: 30000,
-  maxWorkers: 1,
+  rootDir: './tests/unit',
+  setupFilesAfterEnv: ['./setup.js'],
+  testSequencer: './testSequencer.js',
+  modulePathIgnorePatterns: [
+    '<rootDir>/utils',
+    '<rootDir>/sources',
+    '<rootDir>/setup.js',
+    '<rootDir>/testSequencer.js',
+  ],
+  testTimeout: 60000,
 };

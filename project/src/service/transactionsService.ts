@@ -22,6 +22,6 @@ export async function sendMoney(sending: string, receiving: string, money: numbe
     return { status: 400, message: 'verifique o saldo e o valor de envio' };
   }
   if (result === 'FAILURE') {
-    return { status: 500, message: 'sua requisição falhou, verifique os dados e tente mais tarde' };
+    return { status: 400, message: 'sua requisição falhou, verifique os dados e tente mais tarde' };
   }
 }

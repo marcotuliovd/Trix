@@ -1,2 +1,5 @@
 /**/fixtures/projects/back-end/.eslintrc.json
 transactionsModel.ts
+tests
+jest.config.js
+userMock

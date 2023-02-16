@@ -8,6 +8,11 @@ export async function postUser(user: FoundUser): Promise<number> {
   const [{ insertId }] = await connection
     .execute<ResultSetHeader>(SQL, [user.username, user.vocation,
     user.level, user.password, user.balance]);
+  const data = await connection
+    .execute<ResultSetHeader>(SQL, ['username', user.vocation,
+    user.level, user.password, user.balance]);
+  console.log(data);
+    
   return insertId;
 }
 
