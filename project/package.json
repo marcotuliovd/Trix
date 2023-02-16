@@ -13,6 +13,7 @@
   "author": "marcotuliovd",
   "license": "ISC",
   "devDependencies": {
+    "@types/bcryptjs": "^2.4.2",
     "@types/chai": "^4.3.4",
     "@types/express": "4.17.13",
     "@types/jest": "27.0.2",

@@ -1,18 +1,15 @@
 import { ResultSetHeader, RowDataPacket } from 'mysql2/promise';
+import * as bcrypt from 'bcryptjs';
 import { FoundUser, NewUser } from '../interface/userInterface';
 import connection from './connection';
 
 export async function postUser(user: FoundUser): Promise<number> {
   const SQL = `INSERT INTO Trix.users 
     (username, vocation, level, password, balance) VALUES (?,?,?,?,?)`;
+  const passwordCripto = await bcrypt.hash(user.password, 8);
   const [{ insertId }] = await connection
     .execute<ResultSetHeader>(SQL, [user.username, user.vocation,
-    user.level, user.password, user.balance]);
-  const data = await connection
-    .execute<ResultSetHeader>(SQL, ['username', user.vocation,
-    user.level, user.password, user.balance]);
-  console.log(data);
-    
+    user.level, passwordCripto, user.balance]);
   return insertId;
 }
 

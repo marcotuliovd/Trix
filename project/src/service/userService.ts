@@ -1,3 +1,4 @@
+import * as bcrypt from 'bcryptjs';
 import { FoundUser } from '../interface/userInterface';
 import * as models from '../model/userModel';
 
@@ -8,8 +9,9 @@ export async function postUser(user: FoundUser): Promise<number> {
 
 export async function login(username: string, password: string) {
   const userPassword: string = await models.login(username);
-  if (password === userPassword) {
-    return 'USER_VALID';
+  const checkPassword = await bcrypt.compare(password, userPassword);
+  if (checkPassword === false) {
+    return 'USER_INVALID';
   }
-  return 'USER_INVALID';
+  return 'USER_VALID';
 }
